@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .modal {
+        text-align: center;
+        }
+
+        @media screen and (min-width: 768px) {
+            .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+            }
+
+            .modal-dialog {
+                display: inline-block;
+                text-align: left;
+                vertical-align: 55%;
+            }
+        }
+   
+    </style>
+    
+    <title>Othello Home</title>
+</head>
+<body bgcolor="#808000">
+<h1 align="center" style="font-size: 800%">Let's play othello</h1>
+<br/>
+<br/>
+<div class="container-fluid" align="center">
+    <a href={% url 'home' %}><button>Create New Game</button></a> <br><br>
+    <button  data-toggle="modal" data-target="#myModal">Join Existing Game</button>
+    <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Enter Existing Game Token</h4>
+        </div>
+        <div class="modal-body">
+          <form  action="{% url 'join' %}" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <input type="number"   placeholder="Enter Token Number" name="token">
+              </div>
+              <div class="form-group">
+                  <input type="Submit"  id="Submit" value="Submit">
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<br/>
+<div class="container-fluid" align="center">
+</div>
+</body>
+</html>
